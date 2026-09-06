@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KUBE · 桌面 3D 许愿立方体</title>
+<style>
+  :root{--bg:#07070d;--pink:#ff3d7f;--cyan:#18e0ff;--txt:#e8e8f0;--dim:#9a9ab0;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,"Segoe UI",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:480px;margin:0 auto;padding:0 16px 56px;}
+  .hero{padding:56px 0 20px;text-align:center;}
+  .logo{font-size:42px;font-weight:800;letter-spacing:8px;color:#fff;text-shadow:0 0 14px var(--pink),0 0 28px var(--pink);}
+  .sub{color:var(--cyan);font-size:13px;margin-top:10px;letter-spacing:2px;}
+  .visual{margin:22px -16px 0;aspect-ratio:3/2;overflow:hidden;position:relative;border-top:1px solid rgba(255,61,127,.45);border-bottom:1px solid rgba(255,61,127,.45);box-shadow:0 0 60px rgba(255,61,127,.30),0 0 40px rgba(255,61,127,.16) inset;background:#0a0a14;}
+  .visual::after{content:'';position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(to bottom,transparent,var(--bg));pointer-events:none;}
+  .visual img{width:100%;height:100%;object-fit:cover;display:block;}
+  .btn{display:block;width:100%;padding:14px;border-radius:14px;text-align:center;font-size:15px;text-decoration:none;margin-top:12px;font-weight:600;}
+  .btn-pink{background:var(--pink);color:#fff;box-shadow:0 0 22px rgba(255,61,127,.45);}
+  .btn-ghost{border:1px solid var(--cyan);color:var(--cyan);}
+  section{margin-top:44px;}
+  h2{font-size:17px;letter-spacing:2px;color:#fff;border-left:3px solid var(--pink);padding-left:10px;margin:0 0 4px;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+  .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;}
+  .card b{color:var(--cyan);font-size:13px;}
+  .card p{margin:6px 0 0;font-size:12px;color:var(--dim);}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+  .plan{border-radius:12px;padding:16px;}
+  .plan.free{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);}
+  .plan.pro{border:1px solid var(--pink);box-shadow:0 0 22px rgba(255,61,127,.22);background:rgba(255,61,127,.06);}
+  .plan h3{margin:0;font-size:14px;}
+  .plan .price{font-size:22px;font-weight:800;color:#fff;margin:8px 0;}
+  .plan .price small{font-size:11px;color:var(--dim);font-weight:400;}
+  .plan ul{margin:8px 0 0;padding-left:16px;font-size:12px;color:var(--dim);}
+  .plan.pro ul{color:var(--txt);}
+  .tier{margin-top:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 14px;font-size:13px;}
+  .tier span{color:var(--pink);font-weight:700;}
+  .download{margin-top:16px;}
+  .steps{font-size:12px;color:var(--dim);margin-top:10px;line-height:1.9;}
+  .faq{margin-top:12px;}
+  .q{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px 14px;margin-top:10px;font-size:13px;}
+  .q b{color:var(--cyan);}
+  .q p{margin:6px 0 0;color:var(--dim);font-size:12px;}
+  .pay-tabs{display:flex;gap:8px;margin-top:14px;}
+  .pay-tab{flex:1;padding:10px;text-align:center;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);color:var(--dim);}
+  .pay-tab.on{border-color:var(--cyan);color:var(--cyan);background:rgba(24,224,255,.08);}
+  .pay-card{margin-top:12px;background:#fff;border-radius:14px;padding:14px;text-align:center;color:#222;}
+  .pay-card img{width:100%;max-width:240px;display:block;margin:0 auto;border-radius:8px;}
+  .pay-card .nick{margin-top:10px;font-size:12px;color:#666;}
+  .pay-card .tip{margin-top:8px;font-size:11px;color:#999;}
+  .contact-card{margin-top:14px;background:#fff;border-radius:14px;padding:14px;text-align:center;color:#222;border:2px solid var(--cyan);box-shadow:0 0 18px rgba(24,224,255,.25);}
+  .contact-card .ctitle{font-size:13px;font-weight:700;color:#ff3d7f;letter-spacing:1px;margin-bottom:10px;}
+  .contact-card img{width:100%;max-width:190px;display:block;margin:0 auto;border-radius:8px;}
+  .contact-card .ctip{margin-top:10px;font-size:12px;color:#555;}
+  .contact-card .ctip b{color:#222;}
+  footer{text-align:center;color:var(--dim);font-size:12px;margin-top:52px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="logo">KUBE</div>
+    <div class="sub">桌面上的 3D 许愿立方体</div>
+    <div class="visual"><img src="Assets/kube-hero.gif" alt="KUBE 3D 立方体"></div>
+    <a class="btn btn-pink" href="https://github.com/398486076-arch/3DT0-updates/releases/download/v1.1.0/T0-Cube-SelfContained-v1.1.0.zip">免费下载 Windows 版</a>
+    <a class="btn btn-ghost" href="#pro">看 Pro 特权</a>
+  </div>
+
+  <section>
+    <h2>能干嘛</h2>
+    <div class="grid">
+      <div class="card"><b>六面贴图</b><p>照片皮肤随心换，桌面一角专属</p></div>
+      <div class="card"><b>农历黄历宜忌</b><p>干支生肖分段显示，每日宜忌</p></div>
+      <div class="card"><b>观音灵签</b><p>每日手动一抽，密码学随机</p></div>
+      <div class="card"><b>行情汇率</b><p>红涨绿跌实时，无 key 不烧额度</p></div>
+      <div class="card"><b>纪念日提醒</b><p>重要日子不错过（Pro）</p></div>
+      <div class="card"><b>皮肤主题</b><p>纯色 / 图案自定义，任意换</p></div>
+    </div>
+  </section>
+
+  <div class="privacy-banner">
+    <span class="shield">🔒</span>
+    <p>
+      <b>你的照片，永远只在你自己电脑上。</b><br>
+      KUBE 没有云端后台，无法读取任何人的任何照片或个人数据。用户上传到立方体的图片完全存储在用户本地，请用户大可放心体验。激活时用户只需要发机器指纹与付款截图给作者即可。
+    </p>
+  </div>
+
+  <section id="pro">
+    <h2>免费版 vs Pro</h2>
+    <div class="cmp">
+      <div class="plan free">
+        <h3>Free · ¥0</h3>
+        <div class="price">永久免费</div>
+        <ul><li>六面贴图</li><li>黄历宜忌</li><li>观音灵签</li><li>基础行情</li></ul>
+      </div>
+      <div class="plan pro">
+        <h3>Pro · ¥29</h3>
+        <div class="price">永久买断 <small>首发前100名 ¥19</small></div>
+        <ul><li>含 Free 全部</li><li>多面组合皮肤</li><li>纪念日 Pro</li><li>换机重签自助</li></ul>
+      </div>
+    </div>
+    <div class="tier">免费 ¥0 — 永久可用，不限期</div>
+    <div class="tier">Pro 个人 <span>¥29</span> 永久买断（首发前 100 名 ¥19）</div>
+    <div class="tier">7 天试用 — 全功能限时，到期自动变 Free</div>
+  </section>
+
+  <section id="buy">
+    <h2>购买 Pro</h2>
+    <div class="tier">Pro 个人 <span>¥29</span> 永久买断（<span>首发前 100 名 ¥19</span>）</div>
+    <div class="pay-tabs">
+      <div class="pay-tab on" data-pay="wechat" onclick="switchPay('wechat')">微信支付</div>
+      <div class="pay-tab" data-pay="alipay" onclick="switchPay('alipay')">支付宝</div>
+    </div>
+    <div id="pay-wechat" class="pay-card">
+      <img src="Assets/wechat-pay.jpg" alt="微信收款码">
+      <div class="nick">收款人：罗锐豪</div>
+      <div class="tip">扫码付款 ¥19 / ¥29 · 备注留空</div>
+    </div>
+    <div id="pay-alipay" class="pay-card" style="display:none">
+      <img src="Assets/alipay-pay.jpg" alt="支付宝收款码">
+      <div class="nick">收款人：梦萝母婴（备注「KUBE Pro」）</div>
+      <div class="tip">扫码付款 ¥19 / ¥29 · 备注必填以核对</div>
+    </div>
+    <div class="contact-card">
+      <div class="ctitle">付款后扫码加作者微信</div>
+      <img src="Assets/wechat-qr.jpg" alt="作者微信二维码">
+      <div class="ctip">加好友发送：<b>付款截图</b> + <b>机器码</b><br>作者秒回激活码</div>
+    </div>
+    <div class="steps" style="margin-top:14px">
+      <b style="color:var(--cyan)">付款后 3 步拿激活码：</b><br>
+      1 扫上方二维码加作者微信<br>
+      2 发 <b style="color:#fff">付款截图 + 机器码</b>（设置窗一键复制）<br>
+      3 收激活码 → 粘贴到设置窗「激活 Pro」框，永久生效
+    </div>
+  </section>
+
+  <section>
+    <h2>下载与安装</h2>
+    <div class="download">
+      <a class="btn btn-pink" href="https://github.com/398486076-arch/3DT0-updates/releases/download/v1.1.0/T0-Cube-SelfContained-v1.1.0.zip">下载 Windows 版</a>
+      <div class="steps">
+        1 下载自包含 zip（约 70MB，无需装环境）<br>
+        2 解压到任意文件夹，双击 KUBE 即运行<br>
+        3 手机看本页可「发送到电脑」再装
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>常见问题</h2>
+    <div class="faq">
+      <div class="q"><b>怎么激活 Pro？</b><p>设置窗点「复制机器码」→ 发给作者领激活码 → 粘贴到激活框点激活，秒生效。</p></div>
+      <div class="q"><b>怎么付款？</b><p>上方「购买 Pro」区块微信/支付宝任选，扫码即付，付款后把机器码发作者秒回激活码。</p></div>
+      <div class="q"><b>支持 Mac 吗？</b><p>目前仅支持 Windows 10 / 11。Mac 版规划中。</p></div>
+    </div>
+  </section>
+
+  <footer>© 2026 KUBE · Windows 桌面 3D 挂件</footer>
+</div>
+<script>
+  function switchPay(name){
+    document.querySelectorAll('.pay-tab').forEach(t=>t.classList.toggle('on', t.dataset.pay===name));
+    document.getElementById('pay-wechat').style.display = name==='wechat' ? '' : 'none';
+    document.getElementById('pay-alipay').style.display  = name==='alipay'  ? '' : 'none';
+  }
+</script>
+</body>
+</html>
