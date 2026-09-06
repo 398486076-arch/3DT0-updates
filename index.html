@@ -14,7 +14,7 @@
   .sub{color:var(--cyan);font-size:13px;margin-top:10px;letter-spacing:2px;}
   .visual{margin:22px -16px 0;aspect-ratio:3/2;overflow:hidden;position:relative;border-top:1px solid rgba(255,61,127,.45);border-bottom:1px solid rgba(255,61,127,.45);box-shadow:0 0 60px rgba(255,61,127,.30),0 0 40px rgba(255,61,127,.16) inset;background:#0a0a14;}
   .visual::after{content:'';position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(to bottom,transparent,var(--bg));pointer-events:none;}
-  .visual img{width:100%;height:100%;object-fit:cover;display:block;}
+  .visual img,.visual video{width:100%;height:100%;object-fit:cover;display:block;}
   .btn{display:block;width:100%;padding:14px;border-radius:14px;text-align:center;font-size:15px;text-decoration:none;margin-top:12px;font-weight:600;}
   .btn-pink{background:var(--pink);color:#fff;box-shadow:0 0 22px rgba(255,61,127,.45);}
   .btn-ghost{border:1px solid var(--cyan);color:var(--cyan);}
@@ -62,7 +62,12 @@
   <div class="hero">
     <div class="logo">KUBE</div>
     <div class="sub">桌面上的 3D 许愿立方体</div>
-    <div class="visual"><img src="Assets/kube-hero.gif" alt="KUBE 3D 立方体"></div>
+    <div class="visual">
+      <video autoplay loop muted playsinline preload="auto" poster="Assets/kube-hero.jpg" aria-label="KUBE 3D 立方体">
+        <source src="Assets/kube-hero.mp4" type="video/mp4">
+        <img src="Assets/kube-hero.gif" alt="KUBE 3D 立方体">
+      </video>
+    </div>
     <a class="btn btn-pink" href="https://github.com/398486076-arch/3DT0-updates/releases/download/v1.1.0/T0-Cube-SelfContained-v1.1.0.zip">免费下载 Windows 版</a>
     <a class="btn btn-ghost" href="#pro">看 Pro 特权</a>
   </div>
